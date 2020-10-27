@@ -109,12 +109,8 @@ POI的SAX模式的API可以一定程度的解决一些内存溢出的问题，�
  * 需求：单实体导入
  * 导入Excel学员信息到系统。
  * 包含如下列：姓名、性别、出生日期
- * 模板详见：杭州黑马在线202003班学员信息.xls
+ *
  */
-```
-
-```java
-// 杭州黑马在线202003班学员信息.xls文件
 ```
 
 
@@ -180,7 +176,7 @@ public class StudentReadDemo {
         */
         // 封装工作簿对象
         ExcelReaderBuilder workBook = EasyExcel.read
-                ("d:\\杭州黑马在线202003班学员信息.xls", Student.class, new StudentReadListener());
+                ("d:\\信息.xls", Student.class, new StudentReadListener());
 
         // 封装工作表
         ExcelReaderSheetBuilder sheet1 = workBook.sheet();
@@ -232,7 +228,7 @@ public class StudentReadListener extends AnalysisEventListener<Student> {
  * 需求：单实体导出
  * 导出多个学生对象到Excel表格
  * 包含如下列：姓名、性别、出生日期
- * 模板详见：杭州黑马在线202003班学员信息.xlsx
+ * 信息.xlsx
  */
 ```
 
@@ -307,7 +303,7 @@ public class StudentWriteDemo {
             Class head      写入文件的对象类型
             默认写入到07的xlsx中，如果想要写入xls，可以指定类型（待验证）
          */
-        ExcelWriterBuilder workBook = EasyExcel.write("d:\\杭州黑马学员表.xlsx", Student.class);
+        ExcelWriterBuilder workBook = EasyExcel.write("d:\\学员表.xlsx", Student.class);
 
         // sheet方法参数： 工作表的顺序号（从0开始）或者工作表的名字
         workBook.sheet().doWrite(students);
@@ -317,7 +313,7 @@ public class StudentWriteDemo {
         ArrayList<Student> students = new ArrayList<Student>();
         Student data = new Student();
         for (int i = 0; i < 10; i++) {
-            data.setName("杭州黑马学号0" + i);
+            data.setName("学号0" + i);
             data.setBirthday(new Date());
             data.setGender("男");
             students.add(data);
@@ -531,7 +527,7 @@ private static List<Student> initData() {
     ArrayList<Student> students = new ArrayList<>();
     for (int i = 0; i < 10; i++) {
         Student data = new Student();
-        data.setName("杭州黑马学号0" + i);
+        data.setName("学号0" + i);
         data.setBirthday(new Date());
         data.setGender("男");
         students.add(data);
@@ -619,7 +615,7 @@ public class FillData {
         ArrayList<FillData> fillDatas = new ArrayList<FillData>();
         for (int i = 0; i < 10; i++) {
             FillData fillData = new FillData();
-            fillData.setName("杭州黑马0" + i);
+            fillData.setName("黑马0" + i);
             fillData.setAge(10 + i);
             fillDatas.add(fillData);
         }
@@ -645,7 +641,7 @@ public static void main(String[] args) {
 
     // 准备对象数据填充
     FillData fillData = new FillData();
-    fillData.setName("杭州黑马");
+    fillData.setName("张三");
     fillData.setAge(10);
 
 
@@ -657,7 +653,7 @@ public static void main(String[] args) {
 
     // 使用Map数据填充
     HashMap<String, String> mapFillData = new HashMap<>();
-    mapFillData.put("name", "杭州黑马Map");
+    mapFillData.put("name", "张三Map");
     mapFillData.put("age", "11");
 
     // 获取第一个工作表填充并自动关闭流
@@ -679,7 +675,7 @@ public static void main(String[] args) {
 
 ​	代码中被填充数据的实体对象的成员变量名或被填充map集合的key需要和Excel中被{}包裹的变量名称一致。
 
-![](imgs/complexFillTempl.png)
+
 
 
 
@@ -725,7 +721,7 @@ public static void main(String[] args) {
 
 即有多组数据填充，又有单一数据填充，为了避免两者数据出现冲突覆盖的情况，在多组填充时需要通过`FillConfig`对象设置换行。
 
-![1584207785924](imgs/mixFillTemplate.png)
+
 
 
 
